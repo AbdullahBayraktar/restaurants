@@ -81,10 +81,13 @@
 			children = (
 				9046527124EC809E00F046FB /* AppDelegate.swift */,
 				9046527324EC809E00F046FB /* SceneDelegate.swift */,
-				9046527524EC809E00F046FB /* ViewController.swift */,
-				9046527724EC809E00F046FB /* Main.storyboard */,
+				9046529C24EC9D8700F046FB /* Common */,
+				9046529324EC9D8700F046FB /* Extensions */,
+				9046529524EC9D8700F046FB /* Features */,
+				9046529D24EC9D8700F046FB /* Network */,
+				9046529E24EC9D8700F046FB /* Resources */,
+				9046529424EC9D8700F046FB /* Storyboards */,
 				9046527A24EC809F00F046FB /* Assets.xcassets */,
-				9046527C24EC809F00F046FB /* LaunchScreen.storyboard */,
 				9046527F24EC809F00F046FB /* Info.plist */,
 			);
 			path = Restaurants;
@@ -97,6 +100,99 @@
 				9046528A24EC809F00F046FB /* Info.plist */,
 			);
 			path = RestaurantsTests;
+			sourceTree = "<group>";
+		};
+		9046529324EC9D8700F046FB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9046529424EC9D8700F046FB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9046527C24EC809F00F046FB /* LaunchScreen.storyboard */,
+				9046527724EC809E00F046FB /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9046529524EC9D8700F046FB /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				9046529624EC9D8700F046FB /* RestaurantList */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		9046529624EC9D8700F046FB /* RestaurantList */ = {
+			isa = PBXGroup;
+			children = (
+				9046529724EC9D8700F046FB /* ViewModel */,
+				9046529824EC9D8700F046FB /* Cell */,
+				9046529924EC9D8700F046FB /* DataController */,
+				9046529A24EC9D8700F046FB /* ViewController */,
+				9046529B24EC9D8700F046FB /* Router */,
+			);
+			path = RestaurantList;
+			sourceTree = "<group>";
+		};
+		9046529724EC9D8700F046FB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9046529824EC9D8700F046FB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9046529924EC9D8700F046FB /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataController;
+			sourceTree = "<group>";
+		};
+		9046529A24EC9D8700F046FB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9046527524EC809E00F046FB /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9046529B24EC9D8700F046FB /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		9046529C24EC9D8700F046FB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		9046529D24EC9D8700F046FB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9046529E24EC9D8700F046FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
