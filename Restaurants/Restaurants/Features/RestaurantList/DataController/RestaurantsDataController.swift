@@ -9,7 +9,7 @@
 import Foundation
 
 private enum Constant {
-    static let fileName = "sample"
+    static let fileName = "restaurants"
 }
 
 final class RestaurantsDataController: RestaurantsDataProtocol {
