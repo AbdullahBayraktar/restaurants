@@ -21,6 +21,8 @@
 		904652AA24EDC6EF00F046FB /* RestaurantsDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904652A924EDC6EF00F046FB /* RestaurantsDataProtocol.swift */; };
 		904652AC24EDC73F00F046FB /* RestaurantsDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904652AB24EDC73F00F046FB /* RestaurantsDataController.swift */; };
 		904652B024EDC92900F046FB /* RestaurantsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904652AF24EDC92900F046FB /* RestaurantsListResponse.swift */; };
+		9073C2C624F17EF6003EFD74 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073C2C524F17EF6003EFD74 /* UserDefaults.swift */; };
+		9073C2C824F1D0A6003EFD74 /* Collection+Separation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073C2C724F1D0A6003EFD74 /* Collection+Separation.swift */; };
 		90D6F6B824EF332F00E6B0CD /* RestaurantsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6B724EF332F00E6B0CD /* RestaurantsTableViewCell.swift */; };
 		90D6F6BA24EF334300E6B0CD /* RestaurantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6B924EF334300E6B0CD /* RestaurantsListViewModel.swift */; };
 		90D6F6BC24EF334E00E6B0CD /* RestaurantsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6BB24EF334E00E6B0CD /* RestaurantsListRouter.swift */; };
@@ -63,6 +65,8 @@
 		904652A924EDC6EF00F046FB /* RestaurantsDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataProtocol.swift; sourceTree = "<group>"; };
 		904652AB24EDC73F00F046FB /* RestaurantsDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDataController.swift; sourceTree = "<group>"; };
 		904652AF24EDC92900F046FB /* RestaurantsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListResponse.swift; sourceTree = "<group>"; };
+		9073C2C524F17EF6003EFD74 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		9073C2C724F1D0A6003EFD74 /* Collection+Separation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Separation.swift"; sourceTree = "<group>"; };
 		90D6F6B724EF332F00E6B0CD /* RestaurantsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewCell.swift; sourceTree = "<group>"; };
 		90D6F6B924EF334300E6B0CD /* RestaurantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewModel.swift; sourceTree = "<group>"; };
 		90D6F6BB24EF334E00E6B0CD /* RestaurantsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListRouter.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 			children = (
 				90D6F6C524EFE7D200E6B0CD /* TableView+Registration.swift */,
 				90D6F6C724EFE7FA00E6B0CD /* NSObject+Classname.swift */,
+				9073C2C524F17EF6003EFD74 /* UserDefaults.swift */,
+				9073C2C724F1D0A6003EFD74 /* Collection+Separation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 				90D6F6C224EFE44600E6B0CD /* RestaurantsListState.swift in Sources */,
 				90D6F6C824EFE7FA00E6B0CD /* NSObject+Classname.swift in Sources */,
 				90D6F6BA24EF334300E6B0CD /* RestaurantsListViewModel.swift in Sources */,
+				9073C2C624F17EF6003EFD74 /* UserDefaults.swift in Sources */,
 				904652B024EDC92900F046FB /* RestaurantsListResponse.swift in Sources */,
 				90D6F6BE24EF338100E6B0CD /* RestaurantsListViewController+UITableViewDelegate.swift in Sources */,
 				904652A624EDC28700F046FB /* SortingValues.swift in Sources */,
@@ -380,6 +387,7 @@
 				904652A824EDC43B00F046FB /* OpeningState.swift in Sources */,
 				9046527424EC809E00F046FB /* SceneDelegate.swift in Sources */,
 				90D6F6CA24EFE86600E6B0CD /* Routable.swift in Sources */,
+				9073C2C824F1D0A6003EFD74 /* Collection+Separation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

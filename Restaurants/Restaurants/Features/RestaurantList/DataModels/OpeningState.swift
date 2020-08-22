@@ -11,3 +11,17 @@ enum OpeningState: String, Decodable {
     case orderAhead = "order ahead"
     case closed = "closed"
 }
+
+extension OpeningState: Comparable {
+    static func < (lhs: OpeningState, rhs: OpeningState) -> Bool {
+        switch (lhs, rhs) {
+        case (.open, .orderAhead),
+             (.open, .closed):
+            return true
+        case (.orderAhead, .closed):
+            return true
+        default:
+            return false
+        }
+    }
+}

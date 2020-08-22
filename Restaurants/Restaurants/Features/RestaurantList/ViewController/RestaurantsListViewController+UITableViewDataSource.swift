@@ -22,11 +22,11 @@ extension RestaurantsListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantsTableViewCell.className, for: indexPath) as!
         RestaurantsTableViewCell
 
-        guard let restaurant = viewModel.restaurant(at: indexPath.row) else {
+        guard let restaurantInfo = viewModel.restaurantInfo(at: indexPath.row) else {
             return cell
         }
 
-        cell.configure(with: restaurant)
+        cell.configure(info: restaurantInfo, delegate: self)
         
         return cell
     }

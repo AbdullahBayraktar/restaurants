@@ -77,3 +77,12 @@ private extension RestaurantsListViewController {
         }
     }
 }
+
+
+// MARK: - RestaurantsTableViewCellDelegate
+
+extension RestaurantsListViewController: RestaurantsTableViewCellDelegate {
+    func restaurantsTableViewCellDidTapFavourite(_ cell: UITableViewCell, restaurantName: String) {
+        viewModel.togglefavouriteRestaurant(name: restaurantName)
+    }
+}
