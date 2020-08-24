@@ -8,27 +8,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantsTableViewCell" rowHeight="160" id="3Kb-ce-r3u" customClass="RestaurantsTableViewCell" customModule="Restaurants" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="448" height="287"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantsTableViewCell" rowHeight="-51" id="3Kb-ce-r3u" customClass="RestaurantsTableViewCell" customModule="Restaurants" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="448" height="136"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Kb-ce-r3u" id="f4p-eD-Gx9">
-                <rect key="frame" x="0.0" y="0.0" width="448" height="287"/>
+                <rect key="frame" x="0.0" y="0.0" width="448" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="264" placeholderIntrinsicHeight="36" text="Restaurant" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwT-8Q-We1">
-                        <rect key="frame" x="8" y="8" width="402" height="36"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <rect key="frame" x="8" y="8" width="394" height="36"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="264" placeholderIntrinsicHeight="28" text="Status" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zU-6L-y93">
                         <rect key="frame" x="8" y="52" width="432" height="28"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-xu-xpt">
-                        <rect key="frame" x="418" y="15" width="22" height="22"/>
+                        <rect key="frame" x="410" y="15" width="22" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="CKg-w2-B1C"/>
                         </constraints>
@@ -37,24 +37,35 @@
                             <action selector="favouriteButtonTapped:" destination="3Kb-ce-r3u" eventType="touchUpInside" id="Cwd-yh-Ndd"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="264" placeholderIntrinsicHeight="28" text="Sort value" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaE-ou-IJm">
+                        <rect key="frame" x="8" y="100" width="432" height="28"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="1zU-6L-y93" firstAttribute="top" secondItem="PwT-8Q-We1" secondAttribute="bottom" constant="8" id="9nv-03-H1G"/>
                     <constraint firstAttribute="trailing" secondItem="1zU-6L-y93" secondAttribute="trailing" constant="8" id="BTJ-uA-cCr"/>
+                    <constraint firstAttribute="bottom" secondItem="OaE-ou-IJm" secondAttribute="bottom" constant="8" id="EYB-28-vkS"/>
                     <constraint firstItem="ffz-xu-xpt" firstAttribute="leading" secondItem="PwT-8Q-We1" secondAttribute="trailing" constant="8" id="R6x-gu-uj8"/>
                     <constraint firstItem="PwT-8Q-We1" firstAttribute="top" secondItem="f4p-eD-Gx9" secondAttribute="top" constant="8" id="ToC-LA-PtD"/>
-                    <constraint firstAttribute="trailing" secondItem="ffz-xu-xpt" secondAttribute="trailing" constant="8" id="WQ8-k1-b6c"/>
+                    <constraint firstAttribute="trailing" secondItem="ffz-xu-xpt" secondAttribute="trailing" constant="16" id="WQ8-k1-b6c"/>
                     <constraint firstItem="ffz-xu-xpt" firstAttribute="centerY" secondItem="PwT-8Q-We1" secondAttribute="centerY" id="h6t-Sv-Ybk"/>
+                    <constraint firstItem="OaE-ou-IJm" firstAttribute="top" secondItem="1zU-6L-y93" secondAttribute="bottom" constant="20" id="lAd-Xt-eRO"/>
                     <constraint firstItem="PwT-8Q-We1" firstAttribute="leading" secondItem="f4p-eD-Gx9" secondAttribute="leading" constant="8" id="lkG-8t-xEn"/>
+                    <constraint firstItem="OaE-ou-IJm" firstAttribute="leading" secondItem="f4p-eD-Gx9" secondAttribute="leading" constant="8" id="mTV-xe-cca"/>
                     <constraint firstItem="1zU-6L-y93" firstAttribute="leading" secondItem="f4p-eD-Gx9" secondAttribute="leading" constant="8" id="pcd-nj-xJB"/>
+                    <constraint firstAttribute="trailing" secondItem="OaE-ou-IJm" secondAttribute="trailing" constant="8" id="uEM-63-IQh"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="favouriteButton" destination="ffz-xu-xpt" id="Wey-Mx-DnE"/>
                 <outlet property="nameLabel" destination="PwT-8Q-We1" id="tHO-DM-efI"/>
+                <outlet property="sortValueLabel" destination="OaE-ou-IJm" id="6cd-5j-0uW"/>
                 <outlet property="statusLabel" destination="1zU-6L-y93" id="aUN-zA-jfb"/>
             </connections>
-            <point key="canvasLocation" x="24.637681159420293" y="99.441964285714278"/>
+            <point key="canvasLocation" x="24.637681159420293" y="48.883928571428569"/>
         </tableViewCell>
     </objects>
     <resources>

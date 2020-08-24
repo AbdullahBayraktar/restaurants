@@ -9,7 +9,7 @@
 import Foundation
 
 typealias RestaurantsFetchCompletion = ([Restaurant], Bool) -> Void
-typealias RestaurantInfo = (restaurant: Restaurant, isFavourited: Bool)
+typealias RestaurantInfo = (restaurant: Restaurant, isFavourited: Bool, sortValue: String)
 
 final class RestaurantsListViewModel {
     
@@ -47,6 +47,14 @@ final class RestaurantsListViewModel {
         return restaurants?.count ?? 0
     }
     
+    /// Current selected sort option
+    var selectedSortOption: SortOption = .bestMatch {
+        didSet {
+            sortRestaurantsList(sortOption: selectedSortOption)
+            state.areRestaurantsUpdated = true
+        }
+    }
+    
     /// Initializes a new view model
     /// - Parameter dataController: Provided data controller
     init(with dataController: RestaurantsDataProtocol) {
@@ -69,7 +77,8 @@ extension RestaurantsListViewModel {
         }
         let restaurant = restaurants[index]
         let isFavourited = storedFavouritedRestaurantNames?.contains(restaurant.name) ?? false
-        return RestaurantInfo(restaurant, isFavourited)
+        let sortValue = sortingValueText(for: selectedSortOption, sortingValues: restaurant.sortingValues)
+        return RestaurantInfo(restaurant, isFavourited, sortValue)
     }
 }
 
@@ -93,7 +102,7 @@ extension RestaurantsListViewModel {
         storedFavouritedRestaurantNames = updatedRestaurantNames
     }
     
-    func sortRestaurants() {
+    func sortRestaurantsList(sortOption: SortOption) {
         guard let restaurants = restaurants else {
             return
         }
@@ -102,16 +111,71 @@ extension RestaurantsListViewModel {
             storedFavouritedRestaurantNames?.contains(restaurant.name) ?? false
         })
         
-        let favouriteRestaurants = sortAccordingToOpeningState(groups.matching)
-        let otherRestaurants = sortAccordingToOpeningState(groups.notMatching)
+        var favouriteRestaurants = sortRestaurants(groups.matching, sortOption: sortOption)
+        favouriteRestaurants = sortAccordingToOpeningState(favouriteRestaurants)
+        
+        var otherRestaurants = sortRestaurants(groups.notMatching, sortOption: sortOption)
+        otherRestaurants = sortAccordingToOpeningState(otherRestaurants)
         
         self.restaurants = [favouriteRestaurants, otherRestaurants].flatMap({ (restaurant) in
             return restaurant
         })
     }
+}
+
+// MARK: - Sorting
+
+private extension RestaurantsListViewModel {
     
     func sortAccordingToOpeningState(_ restaurants: [Restaurant]) -> [Restaurant] {
         return restaurants.sorted(by: { $0.status < $1.status } )
+    }
+    
+    func sortRestaurants(_ restaurants: [Restaurant], sortOption: SortOption) -> [Restaurant] {
+        switch sortOption {
+        case .bestMatch:
+            return restaurants.sorted(by: { $0.sortingValues.bestMatch > $1.sortingValues.bestMatch })
+        case .newest:
+            return restaurants.sorted(by: { $0.sortingValues.newest > $1.sortingValues.newest })
+        case .ratingAverage:
+            return restaurants.sorted(by: { $0.sortingValues.ratingAverage > $1.sortingValues.ratingAverage })
+        case .distance:
+            return restaurants.sorted(by: { $0.sortingValues.distance < $1.sortingValues.distance })
+        case .popularity:
+            return restaurants.sorted(by: { $0.sortingValues.popularity > $1.sortingValues.popularity })
+        case .averageProductPrice:
+            return restaurants.sorted(by: { $0.sortingValues.averageProductPrice < $1.sortingValues.averageProductPrice })
+        case .deliveryCosts:
+            return restaurants.sorted(by: { $0.sortingValues.deliveryCosts < $1.sortingValues.deliveryCosts })
+        case .minimumCost:
+            return restaurants.sorted(by: { $0.sortingValues.minCost < $1.sortingValues.minCost })
+        }
+    }
+    
+    func sortingValueText(for sortOption: SortOption, sortingValues: SortingValues) -> String {
+        
+        var sortingValue: Any
+        
+        switch sortOption {
+        case .bestMatch:
+          sortingValue = sortingValues.bestMatch
+        case .newest:
+            sortingValue = sortingValues.newest
+        case .ratingAverage:
+            sortingValue = sortingValues.newest
+        case .distance:
+            sortingValue = sortingValues.distance
+        case .popularity:
+            sortingValue = sortingValues.popularity
+        case .averageProductPrice:
+            sortingValue = sortingValues.averageProductPrice
+        case .deliveryCosts:
+            sortingValue = sortingValues.deliveryCosts
+        case .minimumCost:
+            sortingValue = sortingValues.minCost
+        }
+        
+        return String(describing: sortingValue)
     }
 }
 
@@ -124,13 +188,14 @@ extension RestaurantsListViewModel {
         
         dataController.retrieveRestaurants { [weak self] (restaurants, error) in
             guard let strongSelf = self,
-                let restaurants = restaurants else {
+                let restaurants = restaurants,
+                !restaurants.isEmpty else {
                 return
             }
             
             strongSelf.restaurants = restaurants
-            strongSelf.sortRestaurants()
-            strongSelf.state.areRestaurantsAvailable = restaurants.count > 0
+            strongSelf.sortRestaurantsList(sortOption: strongSelf.selectedSortOption)
+            strongSelf.state.areRestaurantsUpdated = true
         }
     }
 }

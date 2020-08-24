@@ -22,7 +22,7 @@ final class RestaurantsTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-//    @IBOutlet private weak var sortValueLabel: UILabel!
+    @IBOutlet private weak var sortValueLabel: UILabel!
     @IBOutlet private weak var favouriteButton: UIButton!
 
     /// Properties
@@ -44,10 +44,12 @@ final class RestaurantsTableViewCell: UITableViewCell {
     // MARK: - Views
     
     /// Configures cell with the given parameters
-    /// - Parameter info: Restaurant info tuple
-    /// - Parameter delegate:
+    /// - info: Restaurant info tuple
+    /// - sortOption: Selected sorting option
+    /// - delegate: Restaurants table view cell delegate
     func configure(
         info: RestaurantInfo,
+        sortOption: SortOption,
         delegate: RestaurantsTableViewCellDelegate) {
         
         let restaurant = info.restaurant
@@ -59,7 +61,10 @@ final class RestaurantsTableViewCell: UITableViewCell {
         nameLabel.text = restaurant.name
         statusLabel.text = restaurant.status.rawValue
         
-        applyStylingForFavouriteButton(isFavourite: info.isFavourited)
+        sortValueLabel.text = sortOption.rawValue + ": " + info.sortValue
+        
+        applyStyling(forStatus: restaurant.status, sortOption: sortOption)
+        applyStylingForFavouriteButton()
     }
 }
 
@@ -70,7 +75,22 @@ private extension RestaurantsTableViewCell {
         selectionStyle = .none
     }
 
-    func applyStylingForFavouriteButton(isFavourite: Bool) {
+    func applyStyling(forStatus status: OpeningState, sortOption: SortOption) {
+        
+        var statusColor: UIColor
+        switch status {
+        case .open:
+            statusColor = .systemGreen
+        case .orderAhead:
+            statusColor = .systemBlue
+        case .closed:
+            statusColor = .systemRed
+        }
+        
+        statusLabel.textColor = statusColor
+    }
+    
+    func applyStylingForFavouriteButton() {
         let image = UIImage.init(systemName: isFavourite ? "suit.heart.fill" : "suit.heart")
         favouriteButton.setImage(image, for: .normal)
     }
@@ -87,7 +107,7 @@ private extension RestaurantsTableViewCell {
         }
         
         isFavourite = !isFavourite
-        applyStylingForFavouriteButton(isFavourite: isFavourite)
+        applyStylingForFavouriteButton()
 
         delegate?.restaurantsTableViewCellDidTapFavourite(self, restaurantName: restaurantName)
     }

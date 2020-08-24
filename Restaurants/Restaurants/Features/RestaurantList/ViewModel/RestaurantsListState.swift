@@ -16,8 +16,8 @@ final class RestaurantsListState {
     /// Triggered when change occured
     var onChange: ((RestaurantsListState.Change) -> Void)?
     
-    /// Restaurants fetch state
-    var areRestaurantsAvailable: Bool = false {
-        didSet { onChange?(.restaurants(areRestaurantsAvailable)) }
+    /// Restaurants updated state
+    var areRestaurantsUpdated: Bool = false {
+        didSet { onChange?(.restaurants(areRestaurantsUpdated)) }
     }
 }

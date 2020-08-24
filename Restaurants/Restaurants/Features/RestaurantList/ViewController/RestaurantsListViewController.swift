@@ -10,8 +10,18 @@ import UIKit
 
 final class RestaurantsListViewController: UIViewController {
     
+    /// Enums
+    private enum Frame {
+        static let picker: CGRect = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 300)
+        static let toolbar: CGRect = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 300, width: UIScreen.main.bounds.size.width, height: 50)
+    }
+    
     /// Outlets
     @IBOutlet private weak var tableView: UITableView!
+    
+    /// Properties
+    private var pickerView: UIPickerView?
+    private var toolBar: UIToolbar?
     
     /// View model
     var viewModel: RestaurantsListViewModel!
@@ -44,6 +54,10 @@ final class RestaurantsListViewController: UIViewController {
 private extension RestaurantsListViewController {
     
     func prepareViews() {
+        title = "Restaurants"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.square"), style: .plain, target: self, action: #selector(sortButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         setupTableView()
     }
     
@@ -53,6 +67,39 @@ private extension RestaurantsListViewController {
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
         tableView.tableFooterView = UIView()
+    }
+    
+    func showPickerView() {
+        let pickerView = UIPickerView(frame: Frame.picker)
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        pickerView.contentMode = .bottom
+        pickerView.backgroundColor = UIColor.secondarySystemBackground
+        pickerView.setValue(UIColor.label, forKey: "textColor")
+        pickerView.autoresizingMask = .flexibleWidth
+
+        self.pickerView = pickerView
+        
+        if let index = SortOption.allCases.firstIndex(where: { $0 == viewModel.selectedSortOption }) {
+            pickerView.selectRow(index, inComponent: 0, animated: false)
+        }
+        
+        view.addSubview(pickerView)
+    }
+    
+    func showToolbar() {
+        let toolBar = UIToolbar(frame: Frame.toolbar)
+        
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(pickerToolbarDoneButtonTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([flexibleSpace, flexibleSpace, rightBarButtonItem], animated: false)
+        
+        self.toolBar = toolBar
+        view.addSubview(toolBar)
     }
 }
 
@@ -78,6 +125,29 @@ private extension RestaurantsListViewController {
     }
 }
 
+// MARK: - Actions
+
+extension RestaurantsListViewController {
+    
+    @objc func sortButtonTapped(_ sender: UIButton) {
+        guard pickerView == nil else {
+            return
+        }
+        showPickerView()
+        showToolbar()
+    }
+    
+    @objc func searchButtonTapped(_ sender: UIButton) {
+        // TODO: Navigate to Search
+    }
+    
+    @objc func pickerToolbarDoneButtonTapped() {
+        toolBar?.removeFromSuperview()
+        pickerView?.removeFromSuperview()
+        toolBar = nil
+        pickerView = nil
+    }
+}
 
 // MARK: - RestaurantsTableViewCellDelegate
 

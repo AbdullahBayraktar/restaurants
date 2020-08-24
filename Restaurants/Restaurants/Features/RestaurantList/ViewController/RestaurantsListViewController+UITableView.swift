@@ -1,5 +1,5 @@
 //
-//  RestaurantsListViewController+UITableViewDataSource.swift
+//  RestaurantsListViewController+UITableView.swift
 //  Restaurants
 //
 //  Created by Abdullah Bayraktar on 21.08.2020.
@@ -7,6 +7,10 @@
 //
 
 import UIKit
+
+private enum TableView {
+    static let rowHeight: CGFloat = 100
+}
 
 // MARK: - UITableViewDataSource
 
@@ -26,8 +30,18 @@ extension RestaurantsListViewController: UITableViewDataSource {
             return cell
         }
 
-        cell.configure(info: restaurantInfo, delegate: self)
+        cell.configure(info: restaurantInfo, sortOption: viewModel.selectedSortOption, delegate: self)
         
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
+
+extension RestaurantsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return TableView.rowHeight
+    }
+}
+
