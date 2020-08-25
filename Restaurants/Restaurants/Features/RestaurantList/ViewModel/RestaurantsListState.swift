@@ -11,6 +11,7 @@ final class RestaurantsListState {
     /// Possible changes
     enum Change {
         case restaurants(Bool)
+        case filteredRestaurants(Bool)
     }
 
     /// Triggered when change occured
@@ -19,5 +20,10 @@ final class RestaurantsListState {
     /// Restaurants updated state
     var areRestaurantsUpdated: Bool = false {
         didSet { onChange?(.restaurants(areRestaurantsUpdated)) }
+    }
+    
+    /// Restaurants filtered state
+    var areRestaurantsFiltered = false {
+        didSet { onChange?(.filteredRestaurants(areRestaurantsFiltered)) }
     }
 }

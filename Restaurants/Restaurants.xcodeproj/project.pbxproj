@@ -24,9 +24,9 @@
 		9073C2C624F17EF6003EFD74 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073C2C524F17EF6003EFD74 /* UserDefaults.swift */; };
 		9073C2C824F1D0A6003EFD74 /* Collection+Separation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073C2C724F1D0A6003EFD74 /* Collection+Separation.swift */; };
 		9073C2CA24F1DA64003EFD74 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073C2C924F1DA64003EFD74 /* SortOption.swift */; };
+		9073C36A24F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073C36924F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift */; };
 		90D6F6B824EF332F00E6B0CD /* RestaurantsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6B724EF332F00E6B0CD /* RestaurantsTableViewCell.swift */; };
 		90D6F6BA24EF334300E6B0CD /* RestaurantsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6B924EF334300E6B0CD /* RestaurantsListViewModel.swift */; };
-		90D6F6BC24EF334E00E6B0CD /* RestaurantsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6BB24EF334E00E6B0CD /* RestaurantsListRouter.swift */; };
 		90D6F6BE24EF338100E6B0CD /* RestaurantsListViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6BD24EF338100E6B0CD /* RestaurantsListViewController+UITableView.swift */; };
 		90D6F6C024EF339B00E6B0CD /* RestaurantsListViewController+UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6BF24EF339B00E6B0CD /* RestaurantsListViewController+UIPickerView.swift */; };
 		90D6F6C224EFE44600E6B0CD /* RestaurantsListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6C124EFE44600E6B0CD /* RestaurantsListState.swift */; };
@@ -69,9 +69,9 @@
 		9073C2C524F17EF6003EFD74 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		9073C2C724F1D0A6003EFD74 /* Collection+Separation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Separation.swift"; sourceTree = "<group>"; };
 		9073C2C924F1DA64003EFD74 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
+		9073C36924F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantsListViewController+UISearchBar.swift"; sourceTree = "<group>"; };
 		90D6F6B724EF332F00E6B0CD /* RestaurantsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTableViewCell.swift; sourceTree = "<group>"; };
 		90D6F6B924EF334300E6B0CD /* RestaurantsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewModel.swift; sourceTree = "<group>"; };
-		90D6F6BB24EF334E00E6B0CD /* RestaurantsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListRouter.swift; sourceTree = "<group>"; };
 		90D6F6BD24EF338100E6B0CD /* RestaurantsListViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantsListViewController+UITableView.swift"; sourceTree = "<group>"; };
 		90D6F6BF24EF339B00E6B0CD /* RestaurantsListViewController+UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantsListViewController+UIPickerView.swift"; sourceTree = "<group>"; };
 		90D6F6C124EFE44600E6B0CD /* RestaurantsListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListState.swift; sourceTree = "<group>"; };
@@ -178,7 +178,6 @@
 				904652A224EDBFEF00F046FB /* DataModels */,
 				9046529824EC9D8700F046FB /* Cell */,
 				9046529924EC9D8700F046FB /* DataController */,
-				9046529B24EC9D8700F046FB /* Router */,
 				9046529A24EC9D8700F046FB /* ViewController */,
 				9046529724EC9D8700F046FB /* ViewModel */,
 			);
@@ -218,16 +217,9 @@
 				9046527524EC809E00F046FB /* RestaurantsListViewController.swift */,
 				90D6F6BD24EF338100E6B0CD /* RestaurantsListViewController+UITableView.swift */,
 				90D6F6BF24EF339B00E6B0CD /* RestaurantsListViewController+UIPickerView.swift */,
+				9073C36924F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		9046529B24EC9D8700F046FB /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				90D6F6BB24EF334E00E6B0CD /* RestaurantsListRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		9046529C24EC9D8700F046FB /* Common */ = {
@@ -371,8 +363,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				904652AA24EDC6EF00F046FB /* RestaurantsDataProtocol.swift in Sources */,
-				90D6F6BC24EF334E00E6B0CD /* RestaurantsListRouter.swift in Sources */,
 				90D6F6C224EFE44600E6B0CD /* RestaurantsListState.swift in Sources */,
+				9073C36A24F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift in Sources */,
 				90D6F6C824EFE7FA00E6B0CD /* NSObject+Classname.swift in Sources */,
 				9073C2CA24F1DA64003EFD74 /* SortOption.swift in Sources */,
 				90D6F6BA24EF334300E6B0CD /* RestaurantsListViewModel.swift in Sources */,

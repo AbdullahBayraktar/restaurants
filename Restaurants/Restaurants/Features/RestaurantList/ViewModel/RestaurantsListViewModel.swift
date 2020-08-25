@@ -29,8 +29,31 @@ final class RestaurantsListViewModel {
     /// Data controller
     private var dataController: RestaurantsDataProtocol
 
+    /// List of filtered restaurants
+    private var filteredRestaurants: [Restaurant]?
+    
+    /// List of retrieved restaurants
+    private var retrievedRestaurants: [Restaurant]?
+    
+    /// Determines whether list is filtered
+    private var isFiltering: Bool = false
+    
     /// List of restaurants
-    private var restaurants: [Restaurant]?
+    private var restaurants: [Restaurant]? {
+        get {
+            isFiltering ? filteredRestaurants : retrievedRestaurants
+        }
+        set {
+            if isFiltering {
+                filteredRestaurants = newValue
+                state.areRestaurantsFiltered = true
+            }
+            else {
+                retrievedRestaurants = newValue
+                state.areRestaurantsUpdated = true
+            }
+        }
+    }
     
     /// List of favourited restaurant names
     private var storedFavouritedRestaurantNames: [String]? {
@@ -44,14 +67,17 @@ final class RestaurantsListViewModel {
 
     /// Count of the restaurants
     var restaurantsCount: Int {
-        return restaurants?.count ?? 0
+        if isFiltering {
+            return filteredRestaurants?.count ?? 0
+        } else {
+            return restaurants?.count ?? 0
+        }
     }
     
     /// Current selected sort option
     var selectedSortOption: SortOption = .bestMatch {
         didSet {
-            sortRestaurantsList(sortOption: selectedSortOption)
-            state.areRestaurantsUpdated = true
+            restaurants = sortRestaurantsList(restaurants ?? [], sortOption: selectedSortOption)
         }
     }
     
@@ -102,10 +128,7 @@ extension RestaurantsListViewModel {
         storedFavouritedRestaurantNames = updatedRestaurantNames
     }
     
-    func sortRestaurantsList(sortOption: SortOption) {
-        guard let restaurants = restaurants else {
-            return
-        }
+    func sortRestaurantsList(_ restaurants: [Restaurant], sortOption: SortOption) -> [Restaurant]  {
         
         let groups = restaurants.separate(predicate: { (restaurant) -> Bool in
             storedFavouritedRestaurantNames?.contains(restaurant.name) ?? false
@@ -117,9 +140,28 @@ extension RestaurantsListViewModel {
         var otherRestaurants = sortRestaurants(groups.notMatching, sortOption: sortOption)
         otherRestaurants = sortAccordingToOpeningState(otherRestaurants)
         
-        self.restaurants = [favouriteRestaurants, otherRestaurants].flatMap({ (restaurant) in
+        let sortedRestaurants = [favouriteRestaurants, otherRestaurants].flatMap({ (restaurant) in
             return restaurant
         })
+        
+        return sortedRestaurants
+    }
+    
+    func filterRestaurants(forSearchText searchText: String?) {
+        guard let searchText = searchText else {
+            return
+        }
+        
+        isFiltering = !searchText.isEmpty
+        
+        if isFiltering {
+            restaurants = retrievedRestaurants?.filter({ (restaurant) -> Bool in
+                restaurant.name.lowercased().contains(searchText.lowercased())
+            })
+        }
+        else {
+            restaurants = retrievedRestaurants
+        }
     }
 }
 
@@ -193,9 +235,7 @@ extension RestaurantsListViewModel {
                 return
             }
             
-            strongSelf.restaurants = restaurants
-            strongSelf.sortRestaurantsList(sortOption: strongSelf.selectedSortOption)
-            strongSelf.state.areRestaurantsUpdated = true
+            strongSelf.restaurants = strongSelf.sortRestaurantsList(restaurants, sortOption: strongSelf.selectedSortOption)
         }
     }
 }

@@ -22,19 +22,16 @@ final class RestaurantsListViewController: UIViewController {
     /// Properties
     private var pickerView: UIPickerView?
     private var toolBar: UIToolbar?
+    private let searchController = UISearchController(searchResultsController: nil)
     
     /// View model
     var viewModel: RestaurantsListViewModel!
-    
-    /// Router
-    var router: RestaurantsListRouter!
 
     // MARK: - Factory
 
     func initialize() {
         let dataController = RestaurantsDataController()
         viewModel = RestaurantsListViewModel(with: dataController)
-        router = RestaurantsListRouter()
     }
     
     // MARK: - Lifecycle
@@ -45,6 +42,7 @@ final class RestaurantsListViewController: UIViewController {
         initialize()
         prepareViews()
         bindViewModel()
+        addKeyboardNotifications()
         viewModel.retrieveRestaurants()
     }
 }
@@ -55,10 +53,12 @@ private extension RestaurantsListViewController {
     
     func prepareViews() {
         title = "Restaurants"
-        
+        let leftBarButtonItem =  UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.square"), style: .plain, target: self, action: #selector(sortButtonTapped))
+        leftBarButtonItem.possibleTitles = ["asdf"]
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.square"), style: .plain, target: self, action: #selector(sortButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         setupTableView()
+        setupSearchController()
     }
     
     func setupTableView() {
@@ -95,11 +95,26 @@ private extension RestaurantsListViewController {
         toolBar.isTranslucent = true
         
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(pickerToolbarDoneButtonTapped))
+        
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([flexibleSpace, flexibleSpace, rightBarButtonItem], animated: false)
+        
+        let titleButton = UIBarButtonItem(title: "Sort by", style: .plain, target: nil, action: nil)
+        titleButton.isEnabled = false
+        titleButton.setTitleTextAttributes([.foregroundColor : UIColor.label], for: .disabled)
+        
+        toolBar.setItems([flexibleSpace, titleButton, flexibleSpace, rightBarButtonItem], animated: false)
         
         self.toolBar = toolBar
         view.addSubview(toolBar)
+    }
+    
+    func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 }
 
@@ -120,6 +135,10 @@ private extension RestaurantsListViewController {
                 if areAvailable {
                     self.tableView.reloadData()
                 }
+            case .filteredRestaurants(let areFiltered):
+                if areFiltered {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -138,7 +157,7 @@ extension RestaurantsListViewController {
     }
     
     @objc func searchButtonTapped(_ sender: UIButton) {
-        // TODO: Navigate to Search
+        present(searchController, animated: true, completion: nil)
     }
     
     @objc func pickerToolbarDoneButtonTapped() {
@@ -154,5 +173,38 @@ extension RestaurantsListViewController {
 extension RestaurantsListViewController: RestaurantsTableViewCellDelegate {
     func restaurantsTableViewCellDidTapFavourite(_ cell: UITableViewCell, restaurantName: String) {
         viewModel.togglefavouriteRestaurant(name: restaurantName)
+    }
+}
+
+// MARK: - Keyboard
+
+private extension RestaurantsListViewController {
+    
+    func addKeyboardNotifications() {
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillChangeFrameNotification,
+            object:nil,
+            queue: .main) { (notification) in
+                self.handleKeyboard(notification: notification)
+        }
+        notificationCenter.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main) { (notification) in
+                self.handleKeyboard(notification: notification)
+        }
+    }
+    
+    func handleKeyboard(notification: Notification) {
+      guard notification.name == UIResponder.keyboardWillChangeFrameNotification else {
+        view.layoutIfNeeded()
+        return
+      }
+
+      UIView.animate(withDuration: 0.1, animations: { () -> Void in
+        self.view.layoutIfNeeded()
+      })
     }
 }
