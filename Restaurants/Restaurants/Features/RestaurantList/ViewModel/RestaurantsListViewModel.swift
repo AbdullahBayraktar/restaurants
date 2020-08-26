@@ -13,31 +13,30 @@ typealias RestaurantInfo = (restaurant: Restaurant, isFavourited: Bool, sortValu
 
 final class RestaurantsListViewModel {
     
+    /// Enums
     private enum UserDefaultsKey {
         static let favouriteRestaurants = "FavouriteRestaurantsKey"
     }
     
+    // MARK: - Stored properties
+    
     /// State
     private let state = RestaurantsListState()
     
-    /// State change handler to trigger
-    var stateChangeHandler: ((RestaurantsListState.Change) -> Void)? {
-        get { return state.onChange }
-        set { state.onChange = newValue }
-    }
-
     /// Data controller
     private var dataController: RestaurantsDataProtocol
 
     /// List of filtered restaurants
     private var filteredRestaurants: [Restaurant]?
     
-    /// List of retrieved restaurants
+    /// List of retrieved and sorted restaurants
     private var retrievedRestaurants: [Restaurant]?
     
     /// Determines whether list is filtered
     private var isFiltering: Bool = false
     
+    // MARK: - Computed properties
+
     /// List of restaurants
     private var restaurants: [Restaurant]? {
         get {
@@ -81,6 +80,14 @@ final class RestaurantsListViewModel {
         }
     }
     
+    /// State change handler to trigger
+    var stateChangeHandler: ((RestaurantsListState.Change) -> Void)? {
+        get { return state.onChange }
+        set { state.onChange = newValue }
+    }
+    
+    // MARK: - Lifecycle
+    
     /// Initializes a new view model
     /// - Parameter dataController: Provided data controller
     init(with dataController: RestaurantsDataProtocol) {
@@ -92,26 +99,32 @@ final class RestaurantsListViewModel {
 
 extension RestaurantsListViewModel {
     
-    /// Returns restaurant info at given index
+    /// Returns restaurant info for restaurant at given index
     ///
-    /// - Parameter index: Index of the requested restaurants
-    /// - Returns: Restaurants if exists
+    /// - Parameter index: Index of the requested restaurant
+    /// - Returns: Restaurant info if exists
     func restaurantInfo(at index: Int) -> RestaurantInfo? {
         guard index < restaurantsCount,
             let restaurants = restaurants else {
                 return nil
         }
+        
         let restaurant = restaurants[index]
         let isFavourited = storedFavouritedRestaurantNames?.contains(restaurant.name) ?? false
-        let sortValue = sortingValueText(for: selectedSortOption, sortingValues: restaurant.sortingValues)
+        let sortValue = RestaurantSortHandler.sortingValueText(
+            for: selectedSortOption,
+            sortingValues: restaurant.sortingValues)
+        
         return RestaurantInfo(restaurant, isFavourited, sortValue)
     }
 }
 
-// MARK: - Modifiers
+// MARK: - Favourite
 
 extension RestaurantsListViewModel {
     
+    /// Favourite/unfavourite restaurant with the given name
+    /// - Parameter name: Restaurant name
     func togglefavouriteRestaurant(name: String) {
         guard var updatedRestaurantNames = storedFavouritedRestaurantNames else {
             storedFavouritedRestaurantNames = [name]
@@ -127,26 +140,45 @@ extension RestaurantsListViewModel {
 
         storedFavouritedRestaurantNames = updatedRestaurantNames
     }
+}
+
+// MARK: - Sort
+
+extension RestaurantsListViewModel {
     
+    /// Sorts restaurants with the provided sort option
+    /// - Parameters:
+    ///   - restaurants: Restaurants to be sorted
+    ///   - sortOption: Chosen sort option
+    /// - Returns: List of sorted restaurants
     func sortRestaurantsList(_ restaurants: [Restaurant], sortOption: SortOption) -> [Restaurant]  {
         
         let groups = restaurants.separate(predicate: { (restaurant) -> Bool in
             storedFavouritedRestaurantNames?.contains(restaurant.name) ?? false
         })
         
-        var favouriteRestaurants = sortRestaurants(groups.matching, sortOption: sortOption)
-        favouriteRestaurants = sortAccordingToOpeningState(favouriteRestaurants)
+        // favourite restaurants list
+        var favouritedRestaurants = RestaurantSortHandler.sortRestaurants(groups.matching, sortOption: sortOption)
+        favouritedRestaurants = RestaurantSortHandler.sortAccordingToOpeningState(favouritedRestaurants)
         
-        var otherRestaurants = sortRestaurants(groups.notMatching, sortOption: sortOption)
-        otherRestaurants = sortAccordingToOpeningState(otherRestaurants)
+        // unfavourite restaurants list
+        var unfavouritedRestaurants = RestaurantSortHandler.sortRestaurants(groups.notMatching, sortOption: sortOption)
+        unfavouritedRestaurants = RestaurantSortHandler.sortAccordingToOpeningState(unfavouritedRestaurants)
         
-        let sortedRestaurants = [favouriteRestaurants, otherRestaurants].flatMap({ (restaurant) in
+        let sortedRestaurants = [favouritedRestaurants, unfavouritedRestaurants].flatMap({ (restaurant) in
             return restaurant
         })
         
         return sortedRestaurants
     }
+}
+
+// MARK: - Filter
+
+extension RestaurantsListViewModel {
     
+    /// Filters restaurants with given search text
+    /// - Parameter searchText: Text to be looked for
     func filterRestaurants(forSearchText searchText: String?) {
         guard let searchText = searchText else {
             return
@@ -165,63 +197,7 @@ extension RestaurantsListViewModel {
     }
 }
 
-// MARK: - Sorting
-
-private extension RestaurantsListViewModel {
-    
-    func sortAccordingToOpeningState(_ restaurants: [Restaurant]) -> [Restaurant] {
-        return restaurants.sorted(by: { $0.status < $1.status } )
-    }
-    
-    func sortRestaurants(_ restaurants: [Restaurant], sortOption: SortOption) -> [Restaurant] {
-        switch sortOption {
-        case .bestMatch:
-            return restaurants.sorted(by: { $0.sortingValues.bestMatch > $1.sortingValues.bestMatch })
-        case .newest:
-            return restaurants.sorted(by: { $0.sortingValues.newest > $1.sortingValues.newest })
-        case .ratingAverage:
-            return restaurants.sorted(by: { $0.sortingValues.ratingAverage > $1.sortingValues.ratingAverage })
-        case .distance:
-            return restaurants.sorted(by: { $0.sortingValues.distance < $1.sortingValues.distance })
-        case .popularity:
-            return restaurants.sorted(by: { $0.sortingValues.popularity > $1.sortingValues.popularity })
-        case .averageProductPrice:
-            return restaurants.sorted(by: { $0.sortingValues.averageProductPrice < $1.sortingValues.averageProductPrice })
-        case .deliveryCosts:
-            return restaurants.sorted(by: { $0.sortingValues.deliveryCosts < $1.sortingValues.deliveryCosts })
-        case .minimumCost:
-            return restaurants.sorted(by: { $0.sortingValues.minCost < $1.sortingValues.minCost })
-        }
-    }
-    
-    func sortingValueText(for sortOption: SortOption, sortingValues: SortingValues) -> String {
-        
-        var sortingValue: Any
-        
-        switch sortOption {
-        case .bestMatch:
-          sortingValue = sortingValues.bestMatch
-        case .newest:
-            sortingValue = sortingValues.newest
-        case .ratingAverage:
-            sortingValue = sortingValues.newest
-        case .distance:
-            sortingValue = sortingValues.distance
-        case .popularity:
-            sortingValue = sortingValues.popularity
-        case .averageProductPrice:
-            sortingValue = sortingValues.averageProductPrice
-        case .deliveryCosts:
-            sortingValue = sortingValues.deliveryCosts
-        case .minimumCost:
-            sortingValue = sortingValues.minCost
-        }
-        
-        return String(describing: sortingValue)
-    }
-}
-
-// MARK: - Network
+// MARK: - Data
 
 extension RestaurantsListViewModel {
     
