@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9007CC0224F62A24007E5366 /* RestaurantsDummyDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0124F62A24007E5366 /* RestaurantsDummyDataController.swift */; };
+		9007CC0424F632EB007E5366 /* RestaurantSortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0324F632EB007E5366 /* RestaurantSortHandler.swift */; };
+		9007CC0624F63797007E5366 /* RestaurantSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0524F63797007E5366 /* RestaurantSortable.swift */; };
+		9007CC0824F63A96007E5366 /* RestaurantSortHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0724F63A96007E5366 /* RestaurantSortHandlerTests.swift */; };
 		9046527224EC809E00F046FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046527124EC809E00F046FB /* AppDelegate.swift */; };
 		9046527424EC809E00F046FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046527324EC809E00F046FB /* SceneDelegate.swift */; };
 		9046527624EC809E00F046FB /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046527524EC809E00F046FB /* RestaurantsListViewController.swift */; };
 		9046527924EC809E00F046FB /* Restaurants.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046527724EC809E00F046FB /* Restaurants.storyboard */; };
 		9046527B24EC809F00F046FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9046527A24EC809F00F046FB /* Assets.xcassets */; };
 		9046527E24EC809F00F046FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046527C24EC809F00F046FB /* LaunchScreen.storyboard */; };
-		9046528924EC809F00F046FB /* RestaurantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046528824EC809F00F046FB /* RestaurantsTests.swift */; };
+		9046528924EC809F00F046FB /* RestaurantsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046528824EC809F00F046FB /* RestaurantsListViewModelTests.swift */; };
 		904652A124EDBFD000F046FB /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904652A024EDBFD000F046FB /* DataHandler.swift */; };
 		904652A424EDC23200F046FB /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904652A324EDC23200F046FB /* Restaurant.swift */; };
 		904652A624EDC28700F046FB /* SortingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904652A524EDC28700F046FB /* SortingValues.swift */; };
@@ -33,7 +37,6 @@
 		90D6F6C424EFE77300E6B0CD /* RestaurantsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F6C324EFE77300E6B0CD /* RestaurantsTableViewCell.xib */; };
 		90D6F6C624EFE7D200E6B0CD /* TableView+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6C524EFE7D200E6B0CD /* TableView+Registration.swift */; };
 		90D6F6C824EFE7FA00E6B0CD /* NSObject+Classname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6C724EFE7FA00E6B0CD /* NSObject+Classname.swift */; };
-		90D6F6CA24EFE86600E6B0CD /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6F6C924EFE86600E6B0CD /* Routable.swift */; };
 		90D6F6CC24EFEA0300E6B0CD /* restaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 90D6F6CB24EFEA0300E6B0CD /* restaurants.json */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9007CC0124F62A24007E5366 /* RestaurantsDummyDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsDummyDataController.swift; sourceTree = "<group>"; };
+		9007CC0324F632EB007E5366 /* RestaurantSortHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortHandler.swift; sourceTree = "<group>"; };
+		9007CC0524F63797007E5366 /* RestaurantSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortable.swift; sourceTree = "<group>"; };
+		9007CC0724F63A96007E5366 /* RestaurantSortHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortHandlerTests.swift; sourceTree = "<group>"; };
 		9046526E24EC809E00F046FB /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9046527124EC809E00F046FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9046527324EC809E00F046FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +64,7 @@
 		9046527D24EC809F00F046FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9046527F24EC809F00F046FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9046528424EC809F00F046FB /* RestaurantsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestaurantsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9046528824EC809F00F046FB /* RestaurantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsTests.swift; sourceTree = "<group>"; };
+		9046528824EC809F00F046FB /* RestaurantsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsListViewModelTests.swift; sourceTree = "<group>"; };
 		9046528A24EC809F00F046FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		904652A024EDBFD000F046FB /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		904652A324EDC23200F046FB /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -78,7 +85,6 @@
 		90D6F6C324EFE77300E6B0CD /* RestaurantsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantsTableViewCell.xib; sourceTree = "<group>"; };
 		90D6F6C524EFE7D200E6B0CD /* TableView+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Registration.swift"; sourceTree = "<group>"; };
 		90D6F6C724EFE7FA00E6B0CD /* NSObject+Classname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Classname.swift"; sourceTree = "<group>"; };
-		90D6F6C924EFE86600E6B0CD /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		90D6F6CB24EFEA0300E6B0CD /* restaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = restaurants.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,7 +144,9 @@
 		9046528724EC809F00F046FB /* RestaurantsTests */ = {
 			isa = PBXGroup;
 			children = (
-				9046528824EC809F00F046FB /* RestaurantsTests.swift */,
+				9046528824EC809F00F046FB /* RestaurantsListViewModelTests.swift */,
+				9007CC0124F62A24007E5366 /* RestaurantsDummyDataController.swift */,
+				9007CC0724F63A96007E5366 /* RestaurantSortHandlerTests.swift */,
 				9046528A24EC809F00F046FB /* Info.plist */,
 			);
 			path = RestaurantsTests;
@@ -225,8 +233,9 @@
 		9046529C24EC9D8700F046FB /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				90D6F6C924EFE86600E6B0CD /* Routable.swift */,
 				9073C2C924F1DA64003EFD74 /* SortOption.swift */,
+				9007CC0324F632EB007E5366 /* RestaurantSortHandler.swift */,
+				9007CC0524F63797007E5366 /* RestaurantSortable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -362,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9007CC0424F632EB007E5366 /* RestaurantSortHandler.swift in Sources */,
 				904652AA24EDC6EF00F046FB /* RestaurantsDataProtocol.swift in Sources */,
 				90D6F6C224EFE44600E6B0CD /* RestaurantsListState.swift in Sources */,
 				9073C36A24F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift in Sources */,
@@ -369,6 +379,7 @@
 				9073C2CA24F1DA64003EFD74 /* SortOption.swift in Sources */,
 				90D6F6BA24EF334300E6B0CD /* RestaurantsListViewModel.swift in Sources */,
 				9073C2C624F17EF6003EFD74 /* UserDefaults.swift in Sources */,
+				9007CC0624F63797007E5366 /* RestaurantSortable.swift in Sources */,
 				904652B024EDC92900F046FB /* RestaurantsListResponse.swift in Sources */,
 				90D6F6BE24EF338100E6B0CD /* RestaurantsListViewController+UITableView.swift in Sources */,
 				904652A624EDC28700F046FB /* SortingValues.swift in Sources */,
@@ -382,7 +393,6 @@
 				90D6F6C024EF339B00E6B0CD /* RestaurantsListViewController+UIPickerView.swift in Sources */,
 				904652A824EDC43B00F046FB /* OpeningState.swift in Sources */,
 				9046527424EC809E00F046FB /* SceneDelegate.swift in Sources */,
-				90D6F6CA24EFE86600E6B0CD /* Routable.swift in Sources */,
 				9073C2C824F1D0A6003EFD74 /* Collection+Separation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,7 +401,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9046528924EC809F00F046FB /* RestaurantsTests.swift in Sources */,
+				9007CC0824F63A96007E5366 /* RestaurantSortHandlerTests.swift in Sources */,
+				9046528924EC809F00F046FB /* RestaurantsListViewModelTests.swift in Sources */,
+				9007CC0224F62A24007E5366 /* RestaurantsDummyDataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +600,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RestaurantsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -609,7 +621,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RestaurantsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
