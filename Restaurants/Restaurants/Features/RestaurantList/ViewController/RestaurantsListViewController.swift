@@ -53,8 +53,6 @@ private extension RestaurantsListViewController {
     
     func prepareViews() {
         title = "Restaurants"
-        let leftBarButtonItem =  UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.square"), style: .plain, target: self, action: #selector(sortButtonTapped))
-        leftBarButtonItem.possibleTitles = ["asdf"]
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down.square"), style: .plain, target: self, action: #selector(sortButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
         setupTableView()
@@ -158,6 +156,7 @@ extension RestaurantsListViewController {
     
     @objc func searchButtonTapped(_ sender: UIButton) {
         present(searchController, animated: true, completion: nil)
+        searchController.searchBar.becomeFirstResponder()
     }
     
     @objc func pickerToolbarDoneButtonTapped() {
