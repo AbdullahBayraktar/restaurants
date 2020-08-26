@@ -96,7 +96,19 @@ final class RestaurantSortHandlerTests: XCTestCase {
         let sortingValue = sut.sortingValueText(for: sortOption, sortingValues: sortingValuesZanzaiRestaurant)
         
         // Then:
-        XCTAssertTrue(sortingValue == "1579")
+        XCTAssertTrue(sortingValue == "€15.79")
+        XCTAssertFalse(sortingValue == "1579")
     }
     
+    func testSortingValueTextForRatingAverage() {
+        // Given: restaurants list and sort option
+        let sortOption = SortOption.ratingAverage
+        
+        // When:
+        let sortingValue = sut.sortingValueText(for: sortOption, sortingValues: sortingValuesZanzaiRestaurant)
+        
+        // Then:
+        XCTAssertTrue(sortingValue == "4.0")
+        XCTAssertFalse(sortingValue == "4")
+    }
 }

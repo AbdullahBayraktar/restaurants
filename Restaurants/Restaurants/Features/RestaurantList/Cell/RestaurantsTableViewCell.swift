@@ -22,6 +22,7 @@ final class RestaurantsTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var sortOptionTitle: UILabel!
     @IBOutlet private weak var sortValueLabel: UILabel!
     @IBOutlet private weak var favouriteButton: UIButton!
 
@@ -61,7 +62,8 @@ final class RestaurantsTableViewCell: UITableViewCell {
         nameLabel.text = restaurant.name
         statusLabel.text = restaurant.status.rawValue
         
-        sortValueLabel.text = sortOption.rawValue + ": " + info.sortValue
+        sortOptionTitle.text = sortOption.rawValue + ":"
+        sortValueLabel.text = info.sortValue
         
         applyStyling(forStatus: restaurant.status, sortOption: sortOption)
         applyStylingForFavouriteButton()
@@ -73,6 +75,8 @@ final class RestaurantsTableViewCell: UITableViewCell {
 private extension RestaurantsTableViewCell {
     func applyStyling() {
         selectionStyle = .none
+        nameLabel.textColor = .systemBlue
+        sortValueLabel.textColor = .systemOrange
     }
 
     func applyStyling(forStatus status: OpeningState, sortOption: SortOption) {
@@ -82,7 +86,7 @@ private extension RestaurantsTableViewCell {
         case .open:
             statusColor = .systemGreen
         case .orderAhead:
-            statusColor = .systemBlue
+            statusColor = .systemIndigo
         case .closed:
             statusColor = .systemRed
         }

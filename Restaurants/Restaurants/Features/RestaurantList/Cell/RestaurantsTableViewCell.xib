@@ -37,8 +37,14 @@
                             <action selector="favouriteButtonTapped:" destination="3Kb-ce-r3u" eventType="touchUpInside" id="Cwd-yh-Ndd"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="264" placeholderIntrinsicHeight="28" text="Sort value" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaE-ou-IJm">
-                        <rect key="frame" x="8" y="100" width="432" height="28"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" placeholderIntrinsicWidth="264" placeholderIntrinsicHeight="28" text="Sort option title" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaE-ou-IJm">
+                        <rect key="frame" x="8" y="100" width="264" height="28"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" placeholderIntrinsicWidth="264" placeholderIntrinsicHeight="28" text="Sort value" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a7-e2-pZ3">
+                        <rect key="frame" x="280" y="100" width="152" height="28"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -47,22 +53,25 @@
                 <constraints>
                     <constraint firstItem="1zU-6L-y93" firstAttribute="top" secondItem="PwT-8Q-We1" secondAttribute="bottom" constant="8" id="9nv-03-H1G"/>
                     <constraint firstAttribute="trailing" secondItem="1zU-6L-y93" secondAttribute="trailing" constant="8" id="BTJ-uA-cCr"/>
+                    <constraint firstItem="6a7-e2-pZ3" firstAttribute="leading" secondItem="OaE-ou-IJm" secondAttribute="trailing" constant="8" id="Dyv-Np-w3V"/>
                     <constraint firstAttribute="bottom" secondItem="OaE-ou-IJm" secondAttribute="bottom" constant="8" id="EYB-28-vkS"/>
+                    <constraint firstAttribute="trailing" secondItem="6a7-e2-pZ3" secondAttribute="trailing" constant="16" id="KoK-zC-m7Y"/>
                     <constraint firstItem="ffz-xu-xpt" firstAttribute="leading" secondItem="PwT-8Q-We1" secondAttribute="trailing" constant="8" id="R6x-gu-uj8"/>
                     <constraint firstItem="PwT-8Q-We1" firstAttribute="top" secondItem="f4p-eD-Gx9" secondAttribute="top" constant="8" id="ToC-LA-PtD"/>
                     <constraint firstAttribute="trailing" secondItem="ffz-xu-xpt" secondAttribute="trailing" constant="16" id="WQ8-k1-b6c"/>
                     <constraint firstItem="ffz-xu-xpt" firstAttribute="centerY" secondItem="PwT-8Q-We1" secondAttribute="centerY" id="h6t-Sv-Ybk"/>
+                    <constraint firstItem="6a7-e2-pZ3" firstAttribute="centerY" secondItem="OaE-ou-IJm" secondAttribute="centerY" id="kKp-iS-8su"/>
                     <constraint firstItem="OaE-ou-IJm" firstAttribute="top" secondItem="1zU-6L-y93" secondAttribute="bottom" constant="20" id="lAd-Xt-eRO"/>
                     <constraint firstItem="PwT-8Q-We1" firstAttribute="leading" secondItem="f4p-eD-Gx9" secondAttribute="leading" constant="8" id="lkG-8t-xEn"/>
                     <constraint firstItem="OaE-ou-IJm" firstAttribute="leading" secondItem="f4p-eD-Gx9" secondAttribute="leading" constant="8" id="mTV-xe-cca"/>
                     <constraint firstItem="1zU-6L-y93" firstAttribute="leading" secondItem="f4p-eD-Gx9" secondAttribute="leading" constant="8" id="pcd-nj-xJB"/>
-                    <constraint firstAttribute="trailing" secondItem="OaE-ou-IJm" secondAttribute="trailing" constant="8" id="uEM-63-IQh"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="favouriteButton" destination="ffz-xu-xpt" id="Wey-Mx-DnE"/>
                 <outlet property="nameLabel" destination="PwT-8Q-We1" id="tHO-DM-efI"/>
-                <outlet property="sortValueLabel" destination="OaE-ou-IJm" id="6cd-5j-0uW"/>
+                <outlet property="sortOptionTitle" destination="OaE-ou-IJm" id="eAh-EP-Hg8"/>
+                <outlet property="sortValueLabel" destination="6a7-e2-pZ3" id="BJ2-W6-SAQ"/>
                 <outlet property="statusLabel" destination="1zU-6L-y93" id="aUN-zA-jfb"/>
             </connections>
             <point key="canvasLocation" x="24.637681159420293" y="48.883928571428569"/>

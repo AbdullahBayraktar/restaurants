@@ -11,6 +11,8 @@
 		9007CC0424F632EB007E5366 /* RestaurantSortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0324F632EB007E5366 /* RestaurantSortHandler.swift */; };
 		9007CC0624F63797007E5366 /* RestaurantSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0524F63797007E5366 /* RestaurantSortable.swift */; };
 		9007CC0824F63A96007E5366 /* RestaurantSortHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0724F63A96007E5366 /* RestaurantSortHandlerTests.swift */; };
+		9007CC0A24F6564E007E5366 /* Measurement+DisplayText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0924F6564E007E5366 /* Measurement+DisplayText.swift */; };
+		9007CC0C24F65844007E5366 /* Int+CurrencyDisplayText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9007CC0B24F65844007E5366 /* Int+CurrencyDisplayText.swift */; };
 		9046527224EC809E00F046FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046527124EC809E00F046FB /* AppDelegate.swift */; };
 		9046527424EC809E00F046FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046527324EC809E00F046FB /* SceneDelegate.swift */; };
 		9046527624EC809E00F046FB /* RestaurantsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046527524EC809E00F046FB /* RestaurantsListViewController.swift */; };
@@ -55,6 +57,8 @@
 		9007CC0324F632EB007E5366 /* RestaurantSortHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortHandler.swift; sourceTree = "<group>"; };
 		9007CC0524F63797007E5366 /* RestaurantSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortable.swift; sourceTree = "<group>"; };
 		9007CC0724F63A96007E5366 /* RestaurantSortHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSortHandlerTests.swift; sourceTree = "<group>"; };
+		9007CC0924F6564E007E5366 /* Measurement+DisplayText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Measurement+DisplayText.swift"; sourceTree = "<group>"; };
+		9007CC0B24F65844007E5366 /* Int+CurrencyDisplayText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+CurrencyDisplayText.swift"; sourceTree = "<group>"; };
 		9046526E24EC809E00F046FB /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9046527124EC809E00F046FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9046527324EC809E00F046FB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				90D6F6C724EFE7FA00E6B0CD /* NSObject+Classname.swift */,
 				9073C2C524F17EF6003EFD74 /* UserDefaults.swift */,
 				9073C2C724F1D0A6003EFD74 /* Collection+Separation.swift */,
+				9007CC0924F6564E007E5366 /* Measurement+DisplayText.swift */,
+				9007CC0B24F65844007E5366 /* Int+CurrencyDisplayText.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -375,8 +381,10 @@
 				904652AA24EDC6EF00F046FB /* RestaurantsDataProtocol.swift in Sources */,
 				90D6F6C224EFE44600E6B0CD /* RestaurantsListState.swift in Sources */,
 				9073C36A24F496E8003EFD74 /* RestaurantsListViewController+UISearchBar.swift in Sources */,
+				9007CC0A24F6564E007E5366 /* Measurement+DisplayText.swift in Sources */,
 				90D6F6C824EFE7FA00E6B0CD /* NSObject+Classname.swift in Sources */,
 				9073C2CA24F1DA64003EFD74 /* SortOption.swift in Sources */,
+				9007CC0C24F65844007E5366 /* Int+CurrencyDisplayText.swift in Sources */,
 				90D6F6BA24EF334300E6B0CD /* RestaurantsListViewModel.swift in Sources */,
 				9073C2C624F17EF6003EFD74 /* UserDefaults.swift in Sources */,
 				9007CC0624F63797007E5366 /* RestaurantSortable.swift in Sources */,

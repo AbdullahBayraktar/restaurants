@@ -7,12 +7,12 @@
 //
 
 enum SortOption: String, CaseIterable {
-    case bestMatch = "Best match"
-    case newest = "Newest"
+    case bestMatch = "Best match score"
+    case newest = "Newest score"
     case ratingAverage = "Rating average"
     case distance = "Distance"
     case popularity = "Popularity"
     case averageProductPrice = "Average product price"
-    case deliveryCosts = "Delivery costs"
+    case deliveryCosts = "Delivery cost"
     case minimumCost = "Minimum cost"
 }

@@ -37,27 +37,27 @@ final class RestaurantSortHandler: RestaurantSortable {
     
     static func sortingValueText(for sortOption: SortOption, sortingValues: SortingValues) -> String {
         
-        var sortingValue: Any
+        var displayValue: String
         
         switch sortOption {
         case .bestMatch:
-          sortingValue = sortingValues.bestMatch
+            displayValue = String(describing: sortingValues.bestMatch)
         case .newest:
-            sortingValue = sortingValues.newest
+            displayValue = String(describing: sortingValues.newest)
         case .ratingAverage:
-            sortingValue = sortingValues.newest
+            displayValue = String(describing: sortingValues.ratingAverage)
         case .distance:
-            sortingValue = sortingValues.distance
+            displayValue = MeasurementFormatter.displayText(for: sortingValues.distance)
         case .popularity:
-            sortingValue = sortingValues.popularity
+            displayValue = String(describing: sortingValues.popularity)
         case .averageProductPrice:
-            sortingValue = sortingValues.averageProductPrice
+            displayValue = sortingValues.averageProductPrice.currencyDisplayText()
         case .deliveryCosts:
-            sortingValue = sortingValues.deliveryCosts
+            displayValue = sortingValues.deliveryCosts.currencyDisplayText()
         case .minimumCost:
-            sortingValue = sortingValues.minCost
+            displayValue = sortingValues.minCost.currencyDisplayText()
         }
         
-        return String(describing: sortingValue)
+        return displayValue
     }
 }
